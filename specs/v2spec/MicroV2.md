@@ -1064,7 +1064,7 @@ Shifts the bits in the destination register/memory right by the specified count 
 **Flags Affected:** CF, ZF, SF (OF behavior depends on count)
 Example: `SHR R1 R2` - R1 = R1 >> R2
 
-// Add SAR if needed for arithmetic right shift
+
 ### SAR (Shift Arithmetic Right)
 
 ```
