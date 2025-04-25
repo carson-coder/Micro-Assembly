@@ -250,9 +250,23 @@ Example: `LBL loop`
 - Labels are referenced with a # prefix in jump instructions
 - All numeric values are treated as 64-bit integers
 
+## Includes
+```
+#include "stdio.print"
+```
+includes a file in the local directory or from the compiler/interpreter's source directory.
+
+path names work with dot's (.) instead of foward slashes like on most systems.
+in order to pass this, you should have a root directory that contains all of the subfolders, then each "root" folder, say stdio or stdlib.
+then each folder ether should contain a file or yet another folder to traverse.
+
+
+
+
+
 # MNI
 
-Micro assembly can interact with native java code through JMASM or python to pymasm to allow users to make native system calls ether through the JNI or using C in python through `python.h`
+Micro assembly can interact with native code to allow users to make native system calls ether through the JNI or using C in python through `python.h`
 
 examples of MNI can be found inside [mni-functions](mni-instructions.md)
 
