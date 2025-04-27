@@ -1,24 +1,33 @@
-
 # Micro-Assembly
 
-This repository serves as the central hub for the specification, documentation, and examples related to the Micro-Assembly language and the MVC based Languages (also known as Micro Virtual Computer languages).
+This repository serves as the central hub for the specification, documentation, and examples related to the Micro-Assembly language and the Micro Virtual Computer (MVC) family of languages.
 
 ## Overview
 
 Here you can find:
 
 * Documentation
-* Language specifications (including different versions)
+* Language specifications for Micro-Assembly and other MVC languages (including different versions)
 * Examples and usage guides (potentially)
+
+## What is the Micro Virtual Computer (MVC)?
+
+The **MVC** is a virtual architecture and language ecosystem that includes:
+- **Micro-Assembly (MicroASM/MASM):** The core low-level language and VM specification.
+- **Wake:** A higher-level, C-like language that compiles to Micro-Assembly.
+- **Other planned languages:** All targeting the same virtual machine model.
+
+See [MVC.md](MVC.md) for an introduction to the MVC family and its goals.
 
 ## Specification
 
-The current development focuses on the **v2 Specification**. Please note that this specification is currently a **work in progress**, and details may change.
+The current development focuses on the **v2 Specification** for Micro-Assembly. Please note that this specification is currently a **work in progress**, and details may change.
 
-* **Instruction Set:** Find the detailed list of instructions, registers, addressing modes, and Micro Native Interface (MNI) functions in the [v2 Instruction Set Documentation](specs/v2spec/v2instructions.md).
-* **General Notes:** Read about syntax conventions and development philosophy in the [v2 Spec Notes](specs/v2spec/notes.md).
+* **Instruction Set:** Find the detailed list of instructions, registers, addressing modes, and Micro Native Interface (MNI) functions in the [v2 Instruction Set Documentation](specs/MasmV2/MicroV2.md).
+* **General Notes:** Read about syntax conventions and development philosophy in the [v2 Spec Notes](specs/MasmV2/notes.md).
+* **Wake Language:** See the [Wake language reference](specs/WakeV1/Wakev1.md) for the higher-level syntax and its mapping to MicroASM.
 
-## Key Features (v2 Spec) of the current spec
+## Key Features (v2 Spec)
 
 * Standard arithmetic, logic, and flow control instructions.
 * Stack operations (PUSH, POP, ENTER, LEAVE).
