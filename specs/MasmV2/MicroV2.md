@@ -380,6 +380,8 @@ Name                   | value | description
 HEAP_ERR_ALREADY_FREE  | -1    | Tried to free a already free chunk
 HEAP_ERR_NOT_ALLOCATED | -2    | Tried to free data that has never been allocated with MALLOC
 
+Note: Because of defragmentation stuff calling free twice on the same malloced pointer can have either error.
+
 
 
 ## Static Data Definition Directives
