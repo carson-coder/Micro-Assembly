@@ -1367,6 +1367,24 @@ When a system call fails, `RAX` will contain a negative value. The runtime stand
 
 This provides a baseline set of system calls. Runtime implementers would map these abstract calls and error codes to the corresponding host OS functionalities. MicroASM programmers can then use these `SYSCALL` numbers reliably across different compliant runtimes.
 
+## _start label start
+
+If code has a `lbl _start` then that becomes the entry point and initalization doesn't run. You are expected to initalize the stack in your _start. Now if there is no _start then the default "_start" will run. The default _start is **not** masm code and C code essentally equavalent to
+
+```
+lbl _start
+mov RSP 65536 ; 65536 is the ram size
+mov RBP 0
+jmp #main
+```
+
+Your program **has** to exit with hlt. If you write your own _start that does
+```
+call #main
+hlt
+```
+then main can use ret because then _start calls hlt. If you use the default _start then you still have to do hlt because there is no return address.
+Note: The default _start has no address and cannot be called to. It is just C++ code.
 
 ## Additional MNI Functions
 
@@ -1518,6 +1536,26 @@ MNI Memory.free R2
 MNI Memory.free R3
 
 HLT
+```
+
+And a example with a custom _start
+
+```assembly
+lbl _start
+mov RSP 65536 ; init stack
+mov RBP 0 ; init base pointer
+DB $200 "Starting Program\n"
+out 1 $200
+call #main
+hlt
+
+lbl main
+mov RAX 1
+mov RBX 2
+add RAX RBX
+out 1 RAX ; outputs 3
+cout 1 10 ; \n
+ret ; Can use ret here because #main was called from _start and _start handles the hlt.
 ```
 
 ## Notes
