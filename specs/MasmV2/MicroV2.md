@@ -353,6 +353,36 @@ LBL name
 Defines a label that can be jumped to.
 Example: `LBL loop`
 
+## Heap
+The masm heap allows for allocating and freeing memory with `MALLOC (ptr) (size)` and `FREE (success) (ptr)`
+
+### MALLOC (ptr) (size)
+The malloc instruction allows for allocating (size) bytes in memory
+
+size - Number of bytes
+ptr - where the data is
+
+ptr can also be a error code (err codes are negative)
+The error codes are as following
+
+Name                  | value | description
+----------------------|-------|----------------
+HEAP_ERR_OUT_OF_SPACE | -3    | Not enough space to allocate size bytes
+HEAP_ERR_INVALID_ARG  | -4    | Size = 0
+
+### FREE (success) (ptr)
+The free instruction allows for freeing memory that has been previously allocated with MALLOC
+
+success - Error code or zero if success
+ptr - pointer to data that should be freed
+
+Name                   | value | description
+-----------------------|-------|----------------
+HEAP_ERR_ALREADY_FREE  | -1    | Tried to free a already free chunk
+HEAP_ERR_NOT_ALLOCATED | -2    | Tried to free data that has never been allocated with MALLOC
+
+Note: Because of defragmentation stuff calling free twice on the same malloced pointer can have either error.
+
 
 
 ## Static Data Definition Directives
@@ -1368,6 +1398,23 @@ When a system call fails, `RAX` will contain a negative value. The runtime stand
 
 This provides a baseline set of system calls. Runtime implementers would map these abstract calls and error codes to the corresponding host OS functionalities. MicroASM programmers can then use these `SYSCALL` numbers reliably across different compliant runtimes.
 
+## _start label start
+
+If code has a `lbl _start` then that becomes the entry point and initalization doesn't run. You are expected to initalize the stack in your _start. Now if there is no _start then the default "_start" will run. The default _start is **not** masm code and C code essentally equavalent to
+
+```
+lbl _start
+mov RSP 65536 ; 65536 is the ram size
+mov RBP 0
+jmp #main
+```
+
+Your program **has** to exit with hlt. If you write your own _start that does
+```
+call #main
+hlt
+```
+That allows for your main function to use `ret` because the _start label handles the running of the `hlt` instruction
 
 ## Additional MNI Functions
 
@@ -1519,6 +1566,62 @@ MNI Memory.free R2
 MNI Memory.free R3
 
 HLT
+```
+Here is a example of _start
+
+```assembly
+lbl _start
+mov RSP 65536 ; init stack
+mov RBP 0 ; init base pointer
+DB $200 "Starting Program\n"
+out 1 $200
+call #main
+hlt
+
+lbl main
+mov RAX 1
+mov RBX 2
+add RAX RBX
+out 1 RAX ; outputs 3
+cout 1 10 ; \n
+ret ; Can use ret here because #main was called from _start and _start handles the hlt.
+```
+
+Here is a malloc example
+## Example
+```
+lbl main
+MALLOC rax 15 ; allocate 14 bytes
+CMP rax 0 ; Err codes are negative
+jl #error
+
+MOVTO rax 0 72   ; H
+MOVTO rax 1 101  ; e
+MOVTO rax 2 108  ; l
+MOVTO rax 3 108  ; l
+MOVTO rax 4 111  ; o
+MOVTO rax 5 44   ; ,
+MOVTO rax 6 32   ;  
+MOVTO rax 7 87   ; W
+MOVTO rax 8 111  ; o
+MOVTO rax 9 114  ; r
+MOVTO rax 10 108 ; l
+MOVTO rax 11 100 ; d
+MOVTO rax 12 33  ; !
+MOVTO rax 13 10  ; \n
+MOVTO rax 14 0   ; null terminator
+
+out 1 $rax
+
+FREE rax rax ; Free the 15 bytes and set rax to zero (if free success else rax = the error code)
+
+hlt
+
+lbl error
+DB $100 "Error while allocating memory: "
+out 1 $100
+out 1 rax
+cout 1 10 ; \n
 ```
 
 ## Notes
