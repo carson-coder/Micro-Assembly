@@ -1413,8 +1413,7 @@ Your program **has** to exit with hlt. If you write your own _start that does
 call #main
 hlt
 ```
-then main can use ret because then _start calls hlt. If you use the default _start then you still have to do hlt because there is no return address.
-Note: The default _start has no address and cannot be called to. It is just C++ code.
+That allows for your main function to use `ret` because the _start label handles the running of the `hlt` instruction
 
 ## Additional MNI Functions
 
