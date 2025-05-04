@@ -13,6 +13,7 @@ This document details all instructions available in the MicroASM language.
 -   **Immediate Values:** Numeric immediate values (e.g., `10`, `-5`, `0xFF`) are generally treated as 64-bit signed integers (`<QWORD>`) unless the instruction context implies a different size (e.g., initializing a `<BYTE>` state variable, or specific instruction variants). Floating-point immediates (e.g., `3.14`, `-0.5`) are treated as `<DOUBLE>`.
 -   **Comments:** Use `;` for single-line comments. Everything after `;` to the end of the line is ignored.
 
+- **Square brackets:** using Square brackets `[]`, you can do simple memory calculations or access memory with `$` prefixed
 
 ## Registers
 
