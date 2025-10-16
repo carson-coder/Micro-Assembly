@@ -30,7 +30,7 @@ finite
 *.la
 *.lo
 
-# Shared objects (inc. Windows DLLs)
+# Shared objects (dynamically linked libraries)
 *.dll
 *.so
 *.so.*
