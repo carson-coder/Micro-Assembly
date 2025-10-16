@@ -1,12 +1,18 @@
 # Prerequisites
 *.d
-
+*.toc
+*.log
+*.out
+*.pdf
+*.aux
+*.gz
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
-
+*.fdb_latexmk
+*.fls
 finite
 
 # Linker output
