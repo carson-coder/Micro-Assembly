@@ -273,36 +273,48 @@ For more information about what kind of features are going to be added, please c
 \chapter{Getting started}
 This chapter Will help you get started on Setting up Micro-Assembly and teach you the basics for Micro-Assembly.
 \subsection{Setting up Micro-Assembly}\label{setup:masm}
+depending on the platform, Micro-Assembly can be easy or require some effort to setup.
+
+you can either:
+1. Run the binary from the same directory as the Micro-assembly code that your trying to run.
+2. Add the binary to the path and then call it from the command line like a normal application.
+
+Masm should be added to path by default if you have installed MASM from Purr.
+however on things i'm not going to cover in this book, lets get into the basic features.
 \subsection{basic features}
-Micro-Assembly comes with the basic features that a general porpous	
+Micro-Assembly comes with the basic features that a general purpose Programming language comes with.
+
+Math instructions, labels, Move operations, things like that.
+
+by default, there are 26 registers inside Micro-Assembly if you don't count the 16 Floating point registers
+that some Runtimes have.
+
+Micro-Assembly has a good chunk of extra features in the language that make it easier to work with.
+
+By default(,) Commas are not needed between arguments in the language.
+you can of course have commas seperating the arguments as they can just be filtered out.
+
 \subsection{Extended features}
+
+As stated above, Micro-Assembly comes with 16 Floating point registers Designed
+to help with math tasks.
+
+by prefixing the instructions with 'F', like 'fmov/fsub'. developers can write code that uses the floating point support that the runtime provides.
+
+Alongside the Floating point support inside the language, Micro-Assembly Comes with a Foreign function interface called MNI that allows developers to extend the language with more features.
+
 \subsection{MNI}\label{subpar:MNI}
-MNI or the Module native interface allows developers to design Foren functions
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
+MNI or the Module native interface allows developers to design Foreign functions to interact with things like the kernel, GUI Tooling, Networking or whatever you may be interested in.
 
-\chapter{Notes}
-
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
+Using the provided MNI instruction, you too can Work with External code in your codebase just as well as native code works with anything else.
 
 \chapter{Basics of Micro-Assembly}
-
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
-\subsection{.}
+In this chapter, we will go over how to Write Micro-Assembly and run it.
+\subsection{1. Registers}
+\subsection{2. Memory}
+\subsection{3. How they play out}
+\subsection{4. Hello world}
+\subsection{5. Reading user input}
 \subsection{.}
 \subsection{.}
 \subsection{.}
