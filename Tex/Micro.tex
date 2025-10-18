@@ -14,15 +14,18 @@
 \usepackage{theorem}
 \usepackage{textcomp}
 \usepackage{listings}
-\usepackage{hyperref}
+\usepackage{tikz}
+
+\usepackage[colorlinks=true, linkcolor=commentgreen, urlcolor=cyan, citecolor=green]{hyperref}
+
 %\usepackage{glossaries}
 \usepackage{parskip}
-\usepackage{fontawesome}
+
 \usepackage{fontspec}
 % Mono font setup (use a TeX Live-safe default)
 \defaultfontfeatures{Scale=MatchLowercase}
 \setmonofont{Latin Modern Mono}
-
+\fontspec{Noto-Sans-Mono}
 % Define colors
 \definecolor{keywordblue}{RGB}{0,0,128}
 \definecolor{commentgreen}{RGB}{0,128,0}
@@ -32,7 +35,7 @@
 \definecolor{directiveorange}{RGB}{180,100,0}
 \definecolor{numberbrown}{RGB}{128,64,0}
 \definecolor{labelteal}{RGB}{0,128,128}
-
+\definecolor{microblue}{RGB}{30, 120, 200}
 % MicroASM language definition
 \lstdefinelanguage{MicroASM}{
 	morekeywords=[1]{
@@ -129,8 +132,38 @@
 \title{Micro-Assembly}
 \author{charlie-santana}
 \date{\today}
-\fontspec{Noto-Sans-Mono}
-\maketitle
+
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	
+	% --- Stylized "logo" title ---
+	{\Huge\bfseries\textsf{\color{microblue} Micro}\color{black}-Assembly}\par
+	\vspace{0.6cm}
+	{\Large\itshape The Official Handbook for Everything MicroASM}\par
+	
+	\vspace{2.5cm}
+	
+	% --- Decorative separator ---
+	\rule{0.8\textwidth}{0.5pt}\par
+	\vspace{0.4cm}
+	{\large A \textbf{Finite Organization} Project}\par
+	\rule{0.8\textwidth}{0.5pt}\par
+	
+	\vspace{2cm}
+	
+	% --- Metadata ---
+	{\large Written by charlie-santana}\par
+	\vspace{0.2cm}
+	{\small Version 1.0 — Compiled on \today}\par
+	
+	\vfill
+	
+	% --- Footer ---
+	{\footnotesize Open-source Documentation \textbullet\ Licensed under CC BY-SA}\par
+\end{titlepage}
+
+
 \tableofcontents
 \chapter{Intro}
 Welcome to the official handbook for Everything Micro-Assembly related.
