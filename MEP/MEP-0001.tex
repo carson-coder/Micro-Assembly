@@ -233,7 +233,7 @@
 	
 	\section{Rationale}
 	While extending the syscall table could theoretically solve this problem, there would still be issues. If we add more syscalls to the spec then every runtime, for every coding language, for every operating system, have to support them. If they are not in the spec then programs become very dependent on which runtime is used.
-	MNI fixes these issues because with MNI because developers can create their own wrappers for os functions and use them in MASM programs.
+	MNI fixes these issues because with MNI developers can create their own wrappers for os functions and use them in MASM programs.
 	
 	Future proposals may introduce typed arguments, metadata reflection, or introspection commands (`MNI list`, etc.) — all building upon this foundation.
 	\subsection{Trade-offs}
